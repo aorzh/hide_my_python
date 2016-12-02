@@ -63,7 +63,7 @@ def main():
     elif args.text_file is not None or args.text_file is not None and args.database_file is not None:
         with open(args.text_file, 'w') as tf:
             for proxy in parser.generate_proxy(args):
-                proxy_line = proxy[2].lower() + ':' + str(proxy[0]) + ':' + str(proxy[1]) + '\n'
+                proxy_line = proxy[2].lower() + '://' + str(proxy[0]) + ':' + str(proxy[1]) + '\n'
                 tf.write(proxy_line)
     elif args.database_file is None and args.text_file is None:
         return 'Please specify output file!'
