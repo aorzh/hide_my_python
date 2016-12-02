@@ -37,8 +37,13 @@ def create_argument_parser():
 
     # The user has to specify an output file
     arg_parser.add_argument('-o', dest='database_file', type=str,
-                            required=True,
+                            required=False,
                             help='database file where the proxies will be saved')
+
+    #
+    arg_parser.add_argument('-t', dest='text_file', type=str,
+                            required=False,
+                            help='text file when proxies will be saved')
 
     # The user can specify a maximum number of proxies to retrieve
     arg_parser.add_argument('-n', dest='number_of_proxies', type=int,

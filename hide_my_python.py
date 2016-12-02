@@ -39,24 +39,34 @@ def main():
     if args.verbose:
         arguments.print_arguments(args)
 
-    # We open the database file where the proxies will be stored
-    connection, cursor = database.initialize_database(args.database_file)
+    if args.database_file is not None and args.text_file is None:
+        # We open the database file where the proxies will be stored
+        connection, cursor = database.initialize_database(args.database_file)
 
-    try:
-        # We generate the proxies
-        for proxy in parser.generate_proxy(args):
-            # And we store them in the database
-            database.insert_in_database(cursor, proxy)
-    except KeyboardInterrupt:
-        if args.verbose:
-            print('')
-            print('[warn] received interruption signal')
+        try:
+            # We generate the proxies
+            for proxy in parser.generate_proxy(args):
+                # And we store them in the database
+                database.insert_in_database(cursor, proxy)
+        except KeyboardInterrupt:
+            if args.verbose:
+                print('')
+                print('[warn] received interruption signal')
 
-    # We save the changes made to the database, and close the file
-    connection.commit()
-    connection.close()
+        # We save the changes made to the database, and close the file
+        connection.commit()
+        connection.close()
 
-    return 0
+        return 0
+
+    # Write to text file with priority
+    elif args.text_file is not None or args.text_file is not None and args.database_file is not None:
+        with open(args.text_file, 'w') as tf:
+            for proxy in parser.generate_proxy(args):
+                proxy_line = proxy[2].lower() + ':' + str(proxy[0]) + ':' + str(proxy[1]) + '\n'
+                tf.write(proxy_line)
+    elif args.database_file is None and args.text_file is None:
+        return 'Please specify output file!'
 
 
 if __name__ == '__main__':
