@@ -60,7 +60,7 @@ def parse_proxy(proxy_html):
     # We get the chunk of code corresponding to the country...
     country_html = regex.COUNTRY_HTML.search(proxy_html).group(0)
     # ...and we parse it
-    country = regex.COUNTRY.search(country_html).group(1)
+    country = regex.COUNTRY.search(country_html).group(1).strip()
 
     # We get the chunk of code corresponding to the speed...
     speed_html = regex.SPEED_HTML.search(proxy_html).group(1)
@@ -75,8 +75,8 @@ def parse_proxy(proxy_html):
     # We get the chunk of code corresponding to the type and anonymity...
     match = regex.TYPE_ANONYMITY.search(proxy_html)
     # ...and we parse it
-    type = match.group(1)
-    anonymity = match.group(2)
+    type = match.group(1).strip()
+    anonymity = match.group(2).strip()
 
     # We return a tuple
     return ip, int(port), type, country, anonymity, speed, connection_time

@@ -27,7 +27,7 @@ import re
 PROXY_HTML = re.compile(r'<tr class=".*?</tr>', flags=re.DOTALL)
 
 # This regex corresponds to the HTML code containing the IP:port of a proxy
-IP_PORT_HTML = re.compile(r'<td><span><style>.*?</td>\s*<td>.*?</td>',
+IP_PORT_HTML = re.compile(r'<td>\s*?<span>\s*?<style>.*?</td>\s*<td>.*?</td>',
                           flags=re.DOTALL)
 
 # This regex is used to find the class which won't be displayed in the IP:port
@@ -48,7 +48,7 @@ TAGS = re.compile(r'<[^>]*>')
 
 # This regex is used to recover the HTML code containing the country in the
 # proxy HTML code
-COUNTRY_HTML = re.compile(r'<span class="country".*?>.*?</span>',
+COUNTRY_HTML = re.compile(r'class="country".*?\/>.*?</span>',
                           re.DOTALL)
 
 # This regex is used to recover the country
@@ -70,4 +70,4 @@ CONNECT_TIME = re.compile(r'style="width: (\d+)%')
 
 # This regex is used to recover the type and anonymity level in the proxy
 # HTML code
-TYPE_ANONYMITY = re.compile(r'<td>(.*?)</td>\s*<td.*?>(.*)</td>')
+TYPE_ANONYMITY = re.compile(r'<td>\s*(.*)\s*</td>\s*<td.*?>\s*(.*)</td>\s*</tr>')
