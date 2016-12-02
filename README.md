@@ -41,7 +41,8 @@ the following command:
 
 where `output_file` is the database file where the proxies will be stored.
 
-If you need save to text file use
+If you need save to text file use:
+
     ./hide_my_python.py -t <tetx_file.txt>
 
 Don't forget to make the script executable with:
