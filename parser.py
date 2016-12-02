@@ -26,8 +26,8 @@ import re
 import regex
 import connect
 
-def parse_ip_port(ip_port_html):
 
+def parse_ip_port(ip_port_html):
     # We parse the class which won't be displayed
     display_none_list = regex.DISPLAY_NONE_CLASS.findall(ip_port_html)
 
@@ -50,8 +50,8 @@ def parse_ip_port(ip_port_html):
 
     return ip, port
 
-def parse_proxy(proxy_html):
 
+def parse_proxy(proxy_html):
     # We get the chunk of code corresponding to the IP:port...
     ip_port_html = regex.IP_PORT_HTML.search(proxy_html).group(0)
     # ...and we parse it
@@ -81,6 +81,7 @@ def parse_proxy(proxy_html):
     # We return a tuple
     return ip, int(port), type, country, anonymity, speed, connection_time
 
+
 def generate_proxy(args):
     # We build the post request, using the arguments specified by the user
     post_request = connect.build_post_request(args)
@@ -98,12 +99,12 @@ def generate_proxy(args):
     # When you do a search, HideMyAss! redirects you to a page.
     # We retrieve the result page's URL
     r = connect.send_data('http://proxylist.hidemyass.com/',
-            data=post_request, allow_redirects=False)
+                          data=post_request, allow_redirects=False)
     url = 'http://proxylist.hidemyass.com{0}'.format(r.headers['Location'])
 
     # HideMyAss! checks this cookie to see if you're a legit user
     # (and we totally are!)
-    cookies = {'PHPSESSID' : r.cookies['PHPSESSID']}
+    cookies = {'PHPSESSID': r.cookies['PHPSESSID']}
 
     while keep_retrieving:
         # Even if a page doesn't exist, HideMyAss! doesn't respond
@@ -128,7 +129,7 @@ def generate_proxy(args):
             # If a maximum number of proxies was set and we
             # are above this limit, we stop retrieving proxies
             if (not retrieve_all and
-                number_of_proxies > args.number_of_proxies):
+                        number_of_proxies > args.number_of_proxies):
                 keep_retrieving = False
                 break
             # Otherwise, we generate a proxy
@@ -148,4 +149,3 @@ def generate_proxy(args):
         # we stop retrieving proxies
         if not results_on_page:
             keep_retrieving = False
-

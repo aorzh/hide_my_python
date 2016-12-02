@@ -28,7 +28,7 @@ PROXY_HTML = re.compile(r'<tr class=".*?</tr>', flags=re.DOTALL)
 
 # This regex corresponds to the HTML code containing the IP:port of a proxy
 IP_PORT_HTML = re.compile(r'<td><span><style>.*?</td>\s*<td>.*?</td>',
-		flags=re.DOTALL)
+                          flags=re.DOTALL)
 
 # This regex is used to find the class which won't be displayed in the IP:port
 # HTML code
@@ -49,7 +49,7 @@ TAGS = re.compile(r'<[^>]*>')
 # This regex is used to recover the HTML code containing the country in the
 # proxy HTML code
 COUNTRY_HTML = re.compile(r'<span class="country".*?>.*?</span>',
-        re.DOTALL)
+                          re.DOTALL)
 
 # This regex is used to recover the country
 COUNTRY = re.compile(r'([a-zA-Z, ]*)</span>')
@@ -57,18 +57,17 @@ COUNTRY = re.compile(r'([a-zA-Z, ]*)</span>')
 # This regex is used to recover the HTML code containing the speed in the
 # proxy HTML code
 SPEED_HTML = re.compile(r'<div class="progress-indicator.*?levels="speed" rel.*?>(.*?)</div>',
-		flags=re.DOTALL)
+                        flags=re.DOTALL)
 # This regex is used to recover the speed
 SPEED = re.compile(r'style="width: (\d+)%')
 
 # This regex is used to recover the HTML code containing the connection time in
 # the proxy HTML code
 CONNECT_TIME_HTML = re.compile(r'<div class="progress-indicator.*?levels="speed">(.*?)</div>',
-		flags=re.DOTALL)
+                               flags=re.DOTALL)
 # This regex is used to recover the connection time
 CONNECT_TIME = re.compile(r'style="width: (\d+)%')
 
 # This regex is used to recover the type and anonymity level in the proxy
 # HTML code
 TYPE_ANONYMITY = re.compile(r'<td>(.*?)</td>\s*<td.*?>(.*)</td>')
-

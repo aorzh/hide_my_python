@@ -25,6 +25,7 @@
 
 import requests
 
+
 def build_post_request(args):
     post_request = {}
 
@@ -36,7 +37,7 @@ def build_post_request(args):
     post_request['p'] = args.ports
 
     # We build the protocols parameter
-    protocol_codes = {'http' : 0, 'https' : 1, 'socks' : 2}
+    protocol_codes = {'http': 0, 'https': 1, 'socks': 2}
     for i, protocol in enumerate(args.protocols):
         post_request['pr[{0}]'.format(i)] = protocol_codes[protocol]
 
@@ -46,7 +47,7 @@ def build_post_request(args):
     for anonymity in range(args.anonymity, max_anonymity_level):
         index = anonymity - args.anonymity
         post_request['a[{0}]'.format(index)] = anonymity
-    
+
     # We build the speed level
     for speed in range(args.speed, 4):
         index = speed - args.speed
@@ -66,14 +67,14 @@ def build_post_request(args):
     # We return the request
     return post_request
 
+
 def send_data(url, data=None, cookies=None, allow_redirects=True):
     # If we have data, we POST
     if data:
         r = requests.post(url, data=data, cookies=cookies,
-                allow_redirects=allow_redirects)
+                          allow_redirects=allow_redirects)
     # Otherwise, we GET
     else:
         r = requests.get(url, cookies=cookies, allow_redirects=allow_redirects)
 
     return r
-
