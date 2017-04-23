@@ -23,8 +23,12 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import re
-import regex
-import connect
+try:
+    from hide_my_python import regex
+    from hide_my_python import connect
+except ImportError:
+    import regex
+    import connect
 
 
 def parse_ip_port(ip_port_html):
