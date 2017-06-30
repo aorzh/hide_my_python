@@ -1,3 +1,7 @@
+## Important update!!! http://proxylist.hidemyass.com no londer available so use simple gist below for now
+https://gist.github.com/aorzh/7c37bf7da5dc062901a4f06bc9fecd5d
+
+
 # HideMyPython!
 	 _    _ _     _      __  __       _____       _   _                 _ 
 	| |  | (_)   | |    |  \/  |     |  __ \     | | | |               | |
